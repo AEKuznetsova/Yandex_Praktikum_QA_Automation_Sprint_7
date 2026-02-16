@@ -1,5 +1,5 @@
 
-import POJOs.Order.OrderPojo;
+import pojos.order.OrderPojo;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.Before;

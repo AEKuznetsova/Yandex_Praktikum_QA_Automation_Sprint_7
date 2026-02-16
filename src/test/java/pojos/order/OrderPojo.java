@@ -1,7 +1,7 @@
-package POJOs.Order;
+package pojos.order;
 
-import Models.Order;
-import Utils.Client;
+import models.Order;
+import utils.Client;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import static io.restassured.RestAssured.given;

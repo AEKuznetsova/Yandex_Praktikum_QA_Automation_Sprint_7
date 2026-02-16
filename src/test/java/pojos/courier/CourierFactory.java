@@ -1,8 +1,8 @@
-package POJOs.Courier;
+package pojos.courier;
 
-import Models.Courier;
+import models.Courier;
 
-import static Utils.Utils.randomString;
+import static utils.Utils.randomString;
 
 public class CourierFactory {
     public static Courier makeCourier() {

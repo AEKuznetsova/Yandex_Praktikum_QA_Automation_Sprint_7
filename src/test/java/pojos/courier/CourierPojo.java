@@ -1,8 +1,8 @@
-package POJOs.Courier;
+package pojos.courier;
 
-import Models.Courier;
-import Models.CourierData;
-import Utils.Client;
+import models.Courier;
+import models.CourierData;
+import utils.Client;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import static io.restassured.RestAssured.given;

@@ -1,5 +1,5 @@
-package POJOs.Order;
-import Models.Order;
+package pojos.order;
+import models.Order;
 
 public class OrderFactory {
 

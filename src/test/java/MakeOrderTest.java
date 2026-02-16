@@ -1,6 +1,6 @@
-import Models.Order;
-import POJOs.Order.OrderPojo;
-import POJOs.Order.OrderFactory;
+import models.Order;
+import pojos.order.OrderPojo;
+import pojos.order.OrderFactory;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.qameta.allure.junit4.DisplayName;

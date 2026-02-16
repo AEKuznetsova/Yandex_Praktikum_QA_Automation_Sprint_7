@@ -1,49 +1,38 @@
-import Models.Courier;
-import Models.CourierData;
-import POJOs.Courier.CourierPojo;
-import io.restassured.RestAssured;
+import models.Courier;
+import models.CourierData;
+import pojos.courier.CourierPojo;
 import io.restassured.response.Response;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-import static POJOs.Courier.CourierFactory.*;
-import static Utils.Utils.randomString;
+import static pojos.courier.CourierFactory.*;
+import static utils.Utils.randomString;
 import static org.junit.Assert.*;
 
 public class CourierCreationTest {
-
-    private static final String BASE_URL = "https://qa-scooter.praktikum-services.ru";
-
     CourierPojo courierPojo = new CourierPojo();
-
     private String id;
 
-
-    @Before
-    public void setUp(){
-        RestAssured.baseURI = BASE_URL;
-    }
     @Test
     @DisplayName("Можно создать курьера, ответ 201 'ok: true'")
     public void checkCreateCourier(){
-
         Courier courier = makeCourier();
         Response response = courierPojo.create(courier);
         Response loginResponse = courierPojo.login(CourierData.getData(courier));
+        id = loginResponse.path("id").toString();
         assertEquals("Неверный статус код", 201, response.statusCode());
         assertEquals(true, response.body().path("ok"));
-        id = loginResponse.path("id").toString();
         assertEquals("Курьер не залогинен в системе", 200, loginResponse.statusCode());
-
     }
+
     @Test
     @DisplayName("Нельзя создать двух одинаковых курьеров, ответ 409")
     public void checkCannotCreateCourierWithSameLogin(){
         Courier courier = makeCourier();
-
         Response response = courierPojo.create(courier);
-        Courier sameLoginCourier =  new Courier()
+        Response loginResponse = courierPojo.login(CourierData.getData(courier));
+        id = loginResponse.path("id").toString();
+        Courier sameLoginCourier = new Courier()
                 .withLogin(courier.getLogin())
                 .withPassword(randomString(8))
                 .withFirstName(randomString(8));
